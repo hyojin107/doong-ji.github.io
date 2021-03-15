@@ -1,0 +1,9 @@
+.main-title {
+  font-size: 16px;
+  margin-bottom: 65px;
+}
+
+.main-title span {
+  color: #404d9e;
+  font-weight: 700;
+}

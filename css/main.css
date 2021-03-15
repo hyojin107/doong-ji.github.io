@@ -6,6 +6,8 @@
 
 /* Screen */
 
+/* Component */
+@import "./component/main-title.css";
 body {
   min-width: 320px;
   max-width: 720px;
