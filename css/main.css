@@ -8,6 +8,8 @@
 
 /* Component */
 @import "./component/main-title.css";
+@import "./component/section-content.css";
+
 body {
   min-width: 320px;
   max-width: 720px;
