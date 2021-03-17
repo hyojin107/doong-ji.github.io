@@ -3,3 +3,25 @@
   margin-bottom: 20px;
 }
 
+/* tabs navigation */
+.tabs {
+  padding: 0 10px;
+}
+
+.tab-list {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab {
+  margin-right: 20px;
+  white-space: nowrap;
+  color: #999;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: #333;
+  font-weight: 700;
+}
+
