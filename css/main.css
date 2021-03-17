@@ -9,6 +9,7 @@
 /* Component */
 @import "./component/main-title.css";
 @import "./component/section-content.css";
+@import "./component/member-tab-list.css";
 
 body {
   min-width: 320px;
