@@ -1,5 +1,6 @@
 .section {
   margin-bottom: 65px;
+  text-align: center;
 }
 .section-content {
   display: flex;
@@ -13,7 +14,7 @@
 }
 
 .section-content__title {
-  font-size: 16px;
+  font-size: 1.6em;
   color: #404d9e;
   font-weight: 700;
   margin-bottom: 35px;
@@ -46,6 +47,6 @@
 
 .section-content__name {
   color: #3ba2e7;
-  font-size: 14px;
+  font-size: 1.4em;
   font-weight: 700;
 }
