@@ -56,3 +56,37 @@
   border-radius: 50%;
 }
 
+/* badge */
+.content__part {
+  display: block;
+  width: 65px;
+  padding: 2px 6px;
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.publish-badge {
+  color: #404d9e;
+  border: 1px solid #404d9e;
+  background-color: #dee3ff;
+}
+
+.frontend-badge {
+  color: #fe7f7f;
+  border: 1px solid #fe7f7f;
+  background-color: #ffdddd;
+}
+
+.nodejs-badge {
+  color: #36cba1;
+  border: 1px solid #36cba1;
+  background-color: #e5fff8;
+}
+
+.spring-badge {
+  color: #ff8926;
+  border: 1px solid #ff8926;
+  background-color: #ffedde;
+}
+
