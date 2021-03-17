@@ -6,235 +6,42 @@
 /* Reset */
 @import "./reset.css";
 
-
 /* Component */
+@import "./component/header.css";
 @import "./component/main-title.css";
 @import "./component/section-content.css";
-@import "./component/header.css";
+@import "./component/member-tab-list.css";
+
+@import "./index.css";
 
 /* float을 해제하는 가상선택자 */
 .clearfix {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .clearfix:after {
-    content: "";
-    display: block;
-    clear: both;
+  content: "";
+  display: block;
+  clear: both;
 }
-
 
 /* main-css */
 body {
-    min-width: 320px;
-    max-width: 720px;
-    /* 1em = 10px */
-    font-size: 10px;
-    background-color: #fff;
-    font-family: "Spoqa Han Sans Neo", "sans-serif";
-    color: #333;
-    margin: 0 auto;
-    text-align: center;
+  min-width: 320px;
+  max-width: 720px;
+  /* 1em = 10px */
+  font-size: 10px;
+  background-color: #fff;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .main {
-    min-width: 300px;
-    max-width: 650px;
-    text-align: center;
-    padding: 0 10px;
-    margin: 0 auto;
-}
-
-section {
-    padding-top: 40px;
-    font-size: 1.8em;
-}
-
-/* content1 */
-.content1 {
-    background-color: #f5f7ff;
-    padding: 50px 0;
-}
-
-.content1 a {}
-
-.content1 a li {
-    width: 50%;
-    background-color: #ffffff;
-    border-radius: 20px;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 40px;
-    box-shadow: 0px 0px 20px rgba(64, 77, 158, 0.05);
-}
-
-.content1 a:last-child li {
-    margin-bottom: 0;
-}
-
-.content1 a li:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-}
-
-.content1 a li h3 {
-    width: 100%;
-    font-weight: 400;
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.content1 a li h3 span {
-    color: #3ba2e7;
-    font-weight: 700;
-}
-
-.content1 a li img {
-    width: 75%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-/* content2 */
-.content2 {
-    padding: 0 10%;
-    padding-bottom: 60px;
-    border-bottom: 10px solid #f5f7ff;
-}
-
-.content2 .box-wrap {}
-
-.content2 .box-wrap a {}
-
-.content2 .box-wrap a > li {
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 20px;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 30px;
-    box-shadow: 0px 0px 30px rgba(64, 77, 158, 0.1);
-}
-
-.content2 .box-wrap a > li:after {
-    content: "";
-    display: block;
-    padding-bottom: 30%;
-}
-
-.content2 .inner {}
-
-.content2 .img-box {
-    width: 100%;
-}
-
-.content2 .img-box img {
-    width: 70%;
-}
-
-.content2 .text-box {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.content2 .text-box p span {
-    color: #3ba2e7;
-    font-weight: 700;
-}
-
-.content2 .more {
-    width: 45%;
-}
-
-
-/* content3 */
-.content3 {
-    padding-bottom: 60px;
-    border-bottom: 10px solid #f5f7ff;
-}
-
-.content3 .box-wrap {
-    margin-bottom: 30px;
-}
-
-.content3 .box-wrap a {
-    width: 50%;
-    display: block;
-    float: left;
-}
-
-.content3 .box-wrap a > li {
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 10px;
-    box-shadow: 0px 0px 30px rgba(64, 77, 158, 0.1);
-}
-
-.content3 .box-wrap a:nth-child(3) li {
-    margin: 0;
-}
-
-.content3 .box-wrap a:nth-child(4) li {
-    margin: 0;
-}
-
-.content3 .box-wrap a > li:after {
-    content: "";
-    display: block;
-    padding-bottom: 90%;
-}
-
-.content3 .more {
-    width: 38%;
-}
-
-
-/* content4 */
-h2 .together {
-    color: #ff807f;
-}
-
-.content4 {
-    margin-bottom: 60px;
-}
-
-.content4 .button {
-    width: 70%;
-    background-color: #ff807f;
-    border: 1px solid #ff807f;
-}
-
-.content4 .image-box {
-    margin-bottom: 30px;
-}
-
-.content4 .button:hover {
-    background-color: #ffeaea;
-    color: #ff807f;
-    border: 1px solid #ff807f;
-}
-
-
-/* footer */
-footer {
-    border-top: 1px solid #404d9e;
-    padding: 15px 0;
-}
-
-footer .copy {
-    color: #404d9e;
-    font-weight: 400;
+  min-width: 300px;
+  max-width: 650px;
+  text-align: center;
+  padding: 0 10px;
+  margin: 0 auto;
 }
