@@ -39,7 +39,7 @@ header .wrap > a > .logo > img {
 
 /* button-toggle-menu click 시 display: block 으로 변경 */
 .button-toggle-close {
-    width: 20%;
+    width: 20px;
     float: right;
     cursor: pointer;
     padding: 10px 0;
