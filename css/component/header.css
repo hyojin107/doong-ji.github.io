@@ -1,6 +1,8 @@
 /* header */
 header {
     width: 100%;
+    min-width: 320px;
+    max-width: 720px;
     background-color: #ffffff;
     position: fixed;
     z-index: 9999;
@@ -8,16 +10,15 @@ header {
 
 header .wrap {
     width: 94%;
+    height: 40px;
     margin: 0 auto;
-    padding-top: 5px;
 }
 
 header .wrap > a {
-    width: 30%;
+    width: 92px;
     float: left;
+    padding-top: 5px;
 }
-
-header .wrap > a > .logo {}
 
 header .wrap > a > .logo > img {
     width: 100%;
@@ -25,10 +26,10 @@ header .wrap > a > .logo > img {
 
 /* button-toggle-close click 시 display: none 으로 변경 */
 .button-toggle-menu {
-    width: 6%;
+    width: 20px;
     float: right;
     cursor: pointer;
-    padding-top: 1.8%;
+    padding: 10px 0;
     /*display: none;*/
 }
 
@@ -38,10 +39,10 @@ header .wrap > a > .logo > img {
 
 /* button-toggle-menu click 시 display: block 으로 변경 */
 .button-toggle-close {
-    width: 6%;
+    width: 20%;
     float: right;
-    padding-top: 1.8%;
     cursor: pointer;
+    padding: 10px 0;
     display: none;
 }
 
