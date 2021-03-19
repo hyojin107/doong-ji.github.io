@@ -6,22 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Doongji-Team Members</title>
     <link rel="stylesheet" href="./css/main.css" />
+
+    <script src="js/jquery-1.12.3.js"></script>
+    <script src="js/main.js"></script>
     <script src="./js/tab.js" defer></script>
   </head>
 
   <body>
     <!-- Header(common) -->
     <header>
-      <nav>
+      <div class="wrap clearfix">
         <!-- logo -->
         <a href="#">
           <h1 class="logo">
-            <img src="./assets/icon/LOGO_doongji_가로형.svg" alt="로고" />
+            <img
+              src="assets/icon/LOGO_doongji_%EA%B0%80%EB%A1%9C%ED%98%95.svg"
+              alt="로고"
+            />
           </h1>
         </a>
+
         <!-- toggle-menu -->
-        <div class="button-toggle-menu"><img src="" alt="메뉴" /></div>
-        <div class="button-toggle-close"><img src="" alt="메뉴" /></div>
+        <div class="button-toggle-menu">
+          <img src="assets/icon/menu-24px.svg" alt="메뉴" />
+        </div>
+        <div class="button-toggle-close">
+          <img src="assets/icon/close-24px.svg" alt="닫기" />
+        </div>
+      </div>
+
+      <nav>
         <!-- menu -->
         <ul class="menu">
           <li class="button-menu1">
@@ -42,8 +56,9 @@
             <a href="#">팀원 소개</a>
           </li>
           <li class="button-menu4">
-            <a href="#">둥지 팀에 참여가기!</a>
+            <a href="#">둥지 팀에 참여하기!</a>
           </li>
+          <li></li>
         </ul>
       </nav>
     </header>
