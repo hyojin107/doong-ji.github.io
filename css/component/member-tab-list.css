@@ -37,12 +37,13 @@
   margin: 0 auto 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px rgba(64, 77, 158, 0.1);
+  text-align: left;
 }
 
 .content__name {
   color: #3ba2e7;
   font-weight: 700;
-  font-size: 1.6em;
+  font-size: 1.4em;
   margin-bottom: 10px;
 }
 
@@ -56,6 +57,10 @@
   height: 70px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.content__description {
+  font-size: 1em;
 }
 
 /* badge */
