@@ -6,13 +6,14 @@
 /* Reset */
 @import "./reset.css";
 
+/* Screen */
+@import "./index.css";
+
 /* Component */
 @import "./component/header.css";
 @import "./component/main-title.css";
 @import "./component/section-content.css";
 @import "./component/member-tab-list.css";
-
-@import "./index.css";
 
 /* float을 해제하는 가상선택자 */
 .clearfix {
