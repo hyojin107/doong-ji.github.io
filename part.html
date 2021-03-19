@@ -9,6 +9,7 @@
 
     <script src="js/jquery-1.12.3.js"></script>
     <script src="js/main.js"></script>
+    <script src="./js/tab.js" defer></script>
   </head>
 
   <body>
@@ -69,6 +70,16 @@
           <span>파트</span>들을 소개합니다.
         </h2>
       </div>
+      <!-- Tabs -->
+      <nav class="tabs">
+        <ul class="tab-list">
+          <li data-tab-target="#publish" class="tab active">Publishing</li>
+          <li data-tab-target="#frontend" class="tab">Front-end</li>
+          <li data-tab-target="#nodejs" class="tab">NodeJS</li>
+          <li data-tab-target="#spring" class="tab">Spring</li>
+          <li data-tab-target="#android" class="tab">Android</li>
+        </ul>
+      </nav>
       <section class="section">
         <!-- Publishing -->
         <article class="section-content active" id="publish" data-tab-content>
