@@ -47,14 +47,14 @@ h3 {
 .content1 a li img {
     width: 75%;
     position: absolute;
-    bottom: 0;
+    bottom: 35px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 /* content2 */
 .content2 {
-    /*  padding: 0 10%;*/
+    /* padding: 0 10%; */
     padding-bottom: 60px;
     border-bottom: 10px solid #f5f7ff;
 }
