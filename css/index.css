@@ -10,6 +10,11 @@ h3 {
     border-bottom: 10px solid #f5f7ff;
 }
 
+.content1 .main-title img {
+   position: relative;
+    left: -30px;
+}
+
 .content1 a li {
     width: 50%;
     background-color: #ffffff;
