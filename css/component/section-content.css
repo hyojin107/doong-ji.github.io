@@ -73,7 +73,8 @@
   display: block;
   color: #999;
   margin-bottom: 15px;
-  font-weight: 300;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .section-content__questions {
