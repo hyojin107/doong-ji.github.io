@@ -80,21 +80,21 @@
 }
 
 .frontend-badge {
-  color: #fe7f7f;
-  border: 1px solid #fe7f7f;
-  background-color: #ffdddd;
+  color: #3ba2e7;
+  border: 1px solid #3ba2e7;
+  background-color: #e0f3ff;
 }
 
-.nodejs-badge {
+.backend-badge {
   color: #36cba1;
   border: 1px solid #36cba1;
   background-color: #e5fff8;
 }
 
-.spring-badge {
-  color: #ff8926;
-  border: 1px solid #ff8926;
-  background-color: #ffedde;
+.android-badge {
+  color: #ff807f;
+  border: 1px solid #ff807f;
+  background-color: #ffeaea;
 }
 
 [data-tab-content] {
