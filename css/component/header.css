@@ -1,111 +1,112 @@
 /* header */
 header {
-    width: 100%;
-    min-width: 320px;
-    max-width: 720px;
-    background-color: #ffffff;
-    position: fixed;
-    z-index: 9999;
+  width: 100%;
+  min-width: 320px;
+  max-width: 720px;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 }
 
 header .wrap {
-    width: 94%;
-    height: 40px;
-    margin: 0 auto;
+  width: 94%;
+  height: 40px;
+  margin: 0 auto;
 }
 
 header .wrap > a {
-    width: 92px;
-    float: left;
-    padding-top: 5px;
+  width: 92px;
+  float: left;
+  padding-top: 5px;
 }
 
 header .wrap > a > .logo > img {
-    width: 100%;
+  width: 100%;
 }
 
 /* button-toggle-close click 시 display: none 으로 변경 */
 .button-toggle-menu {
-    width: 20px;
-    float: right;
-    cursor: pointer;
-    padding: 10px 0;
-    /*display: none;*/
+  width: 20px;
+  float: right;
+  cursor: pointer;
+  padding: 10px 0;
+  /*display: none;*/
 }
 
 .button-toggle-menu img {
-    width: 100%;
+  width: 100%;
 }
 
 /* button-toggle-menu click 시 display: block 으로 변경 */
 .button-toggle-close {
-    width: 20px;
-    float: right;
-    cursor: pointer;
-    padding: 10px 0;
-    display: none;
+  width: 20px;
+  float: right;
+  cursor: pointer;
+  padding: 10px 0;
+  display: none;
 }
 
 .button-toggle-close img {
-    width: 100%;
+  width: 100%;
 }
 
 /* menu */
 nav {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 /* button-toggle에 따라 display: none/block 으로 변경 */
 .menu {
-    font-size: 1.6em;
-    display: none;
+  font-size: 1.6em;
+  display: none;
 }
 
 .menu > li {
-    background-color: #ffffff;
-    border-bottom: 1px solid #f1f1f1;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .menu > li:first-child {
-    background-color: #ffffff;
-    border-top: 1px solid #f1f1f1;
+  background-color: #ffffff;
+  border-top: 1px solid #f1f1f1;
 }
 
 .menu > li:nth-child(4) {
-    background-color: #dee3ff;
-    border-bottom: 1px solid #404d9e;
-    border-top: 1px solid #404d9e;
+  background-color: #dee3ff;
+  border-bottom: 1px solid #404d9e;
+  border-top: 1px solid #404d9e;
 }
 
 .menu > li:last-child {
-    height: 500px;
+  height: 500px;
 }
 
 .menu > li > a {
-    display: block;
-    width: 96%;
-    margin: 0 auto;
-    padding: 3% 0;
+  display: block;
+  width: 96%;
+  margin: 0 auto;
+  padding: 3% 0;
 }
 
 .menu > li:nth-child(4) a {
-    color: #404d9e;
+  color: #404d9e;
 }
 
 .sub-menu > li:first-child {
-    border-bottom: 1px solid #f1f1f1;
-    border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+  border-top: 1px solid #f1f1f1;
 }
 
 .sub-menu > li {
-    background-color: #f9f9f9;
-    /*display: none;*/
+  background-color: #f9f9f9;
+  /*display: none;*/
 }
 
 .sub-menu > li > a {
-    display: block;
-    width: 96%;
-    margin: 0 auto;
-    padding: 4% 0;
+  display: block;
+  width: 96%;
+  margin: 0 auto;
+  padding: 4% 0;
 }
