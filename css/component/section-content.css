@@ -78,6 +78,7 @@
 }
 
 .section-content__questions {
+  width: 100%;
   color: #ff681c;
   text-align: left;
   font-size: 1.2em;
@@ -85,6 +86,7 @@
 }
 
 .section-content__description {
+  width: 100%;
   font-size: 1em;
   text-align: left;
   margin-bottom: 10px;
