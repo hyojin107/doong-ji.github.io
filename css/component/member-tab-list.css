@@ -23,6 +23,10 @@
   cursor: pointer;
 }
 
+.tab:last-child {
+    margin-right: 0;
+}
+
 .tab.active {
   color: #333;
   font-weight: 700;
