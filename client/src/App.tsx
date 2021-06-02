@@ -7,7 +7,7 @@ import Signin from '@/pages/Signin';
 import Signup from '@/pages/Signup';
 import TestPage from '@/pages/TestPage';
 import GlobalStyle from '@/theme/globalStyle';
-import AppLayout from '@/layouts/AppLayout';
+import AppLayout from '@/components/AppLayout';
 import About from '@/pages/About';
 import Project from '@/pages/Project';
 import Calendar from '@/pages/Calendar';

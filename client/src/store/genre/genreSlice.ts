@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { RootState } from '@/store';
 
+import { RootState } from '@/store';
 import { Movie, StatusType } from '@/types/movie';
 import { Genre } from '@/apis';
+import { fetchApi } from '@/utils/fetchApi';
 
 interface GenreType {
   genre: Movie[];
@@ -15,15 +15,11 @@ const initialState: GenreType = {
   status: 'idle',
 };
 
-export const genreAsync = createAsyncThunk<Movie[]>('genre/fetchGenre', async () => {
-  try {
-    const {
-      data: { genres },
-    } = await axios.get(Genre);
-    return genres;
-  } catch (e) {
-    console.log(e);
-  }
+const fetGenre = fetchApi<Movie[]>({ url: Genre, method: 'GET' });
+
+export const genreAsync = createAsyncThunk('genre/fetchGenre', async () => {
+  const res = await fetGenre();
+  return res;
 });
 
 //slice
@@ -40,6 +36,12 @@ export const genreSlice = createSlice({
       .addCase(genreAsync.fulfilled, (state, action: PayloadAction<Movie[]>) => {
         state.status = 'idle';
         state.genre = action.payload;
+      })
+      .addCase(genreAsync.rejected, (state, action) => {
+        if (action.error.name === 'FailRequest') {
+          //error 분기
+        }
+        state.status = 'failed';
       });
   },
 });
