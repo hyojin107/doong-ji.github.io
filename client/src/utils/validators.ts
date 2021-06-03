@@ -6,7 +6,7 @@ const signupExp: RegExpDictionary = {
   name: /^[가-힣]{2,5}$/,
   email: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
   password: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
-  nickname: /^[가-힣]{2,5}$/,
+  nickname: /^[가-힣|a-z|A-Z]{2,10}$/,
 };
 
 export const isName = (expName: string): boolean => {
