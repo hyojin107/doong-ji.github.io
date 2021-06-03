@@ -26,13 +26,6 @@ interface SignupFormProps {
   onChangePart: (value: string) => void;
 }
 
-const SignupSection = styled.section`
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
 const SignupForm: React.FC<SignupFormProps> = ({
   name,
   email,
@@ -54,7 +47,6 @@ const SignupForm: React.FC<SignupFormProps> = ({
   onChangePart,
 }) => {
   const { Option } = Select;
-
   const suffix = (isVaildValue: boolean) => {
     return isVaildValue ? (
       <CheckCircleTwoTone twoToneColor={theme.PRIMARY_COLOR} />
@@ -71,14 +63,21 @@ const SignupForm: React.FC<SignupFormProps> = ({
     return !isVaildValue && value.length !== 0 && helpMessage;
   };
 
+  const layout = {
+    labelCol: { span: 20 },
+    wrapperCol: { span: 25 },
+  };
+
   return (
     <SignupSection>
-      <Form layout="vertical">
+      <SignupTitle>회원가입</SignupTitle>
+      <Form style={{ width: '100%' }} layout="vertical" {...layout}>
         <Form.Item
           name="아이디"
           label="아이디"
           validateStatus={validateStatus(isEmailValid, email)}
           help={help(isEmailValid, email, Message.EmailMessage)}
+          rules={[{ required: true }]}
         >
           <Input
             value={email}
@@ -95,6 +94,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
           label="비밀번호"
           validateStatus={validateStatus(isPasswordValid, password)}
           help={help(isPasswordValid, password, Message.PasswordMessage)}
+          rules={[{ required: true }]}
         >
           <Input
             value={password}
@@ -112,6 +112,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
           label="비밀번호 재확인"
           validateStatus={validateStatus(isPasswordReValid, passwordConfirm)}
           help={help(isPasswordReValid, passwordConfirm, Message.PasswordCheckMessage)}
+          rules={[{ required: true }]}
         >
           <Input
             value={passwordConfirm}
@@ -129,6 +130,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
           label="이름"
           validateStatus={validateStatus(isNameValid, name)}
           help={help(isNameValid, name, Message.NameMessage)}
+          rules={[{ required: true }]}
         >
           <Input
             title="이름"
@@ -145,6 +147,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
           label="닉네임"
           validateStatus={validateStatus(isNicknameValid, nickname)}
           help={help(isNicknameValid, nickname, Message.NicknameMessage)}
+          rules={[{ required: true }]}
         >
           <Input
             title="닉네임"
@@ -156,7 +159,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
           />
         </Form.Item>
 
-        <Form.Item name="파트" label="파트">
+        <Form.Item name="파트" label="파트" rules={[{ required: true }]}>
           <Select showSearch placeholder="파트를 선택해 주세요." onChange={onChangePart}>
             <Option value="frontend">frontend</Option>
             <Option value="backend">backend</Option>
@@ -165,17 +168,42 @@ const SignupForm: React.FC<SignupFormProps> = ({
             <Option value="ios">ios</Option>
           </Select>
         </Form.Item>
+
+        <Form.Item>
+          <Button
+            block
+            type="primary"
+            onClick={onClickSuccessSignup}
+            disabled={
+              !isNameValid || !isEmailValid || !isPasswordValid || !isPasswordReValid || !isNicknameValid || !part
+            }
+          >
+            가입하기
+          </Button>
+        </Form.Item>
       </Form>
-      <Button
-        block
-        type="primary"
-        onClick={onClickSuccessSignup}
-        disabled={!isNameValid || !isEmailValid || !isPasswordValid || !isPasswordReValid || !isNicknameValid || !part}
-      >
-        가입하기
-      </Button>
     </SignupSection>
   );
 };
+
+const SignupSection = styled.section`
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 50%);
+  padding: 30px 60px;
+  margin: 0 auto;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const SignupTitle = styled.h1`
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 40px;
+`;
 
 export default SignupForm;
