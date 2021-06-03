@@ -1,9 +1,18 @@
 import { css } from '@emotion/react';
+import reset from 'emotion-reset';
 
-const reset = css`
+const GlobalStyle = css`
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+  ${reset}
+
   body {
-    color: #000000;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    height: 100%;
+  }
+  html {
+    height: 100%;
   }
 `;
 
-export default reset;
+export default GlobalStyle;

@@ -1,14 +1,16 @@
 import axios, { Method } from 'axios';
 
-export type ErrorType = { error?: 1 | true; message?: string };
+type Name = 'FailRequest' | 'NetworkEror';
 
-const errorHandler = (e: Error) => {
-  console.error(e);
-};
+class CustomError extends Error {
+  constructor(name: Name) {
+    super();
+    this.name = name;
+  }
+}
 
-export const fetchApi =
-  <T, S = null>(param: { url: string; method: Method }) =>
-  async (paramData?: S) => {
+export const fetchApi = <T, S = null>(param: { url: string; method: Method }) => {
+  return async (paramData?: S) => {
     try {
       const data = (
         await axios({
@@ -19,7 +21,9 @@ export const fetchApi =
       ).data as T;
 
       return data;
-    } catch (e) {
-      errorHandler(e);
+    } catch (error) {
+      console.error(error);
+      throw new CustomError('FailRequest');
     }
   };
+};
