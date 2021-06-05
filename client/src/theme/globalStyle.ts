@@ -13,6 +13,9 @@ const GlobalStyle = css`
   html {
     height: 100%;
   }
+  .ant-carousel .slick-dots li button {
+    height: 13px;
+  }
 `;
 
 export default GlobalStyle;
