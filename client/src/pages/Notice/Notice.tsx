@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-const Project: FC = () => {
+const Notice: FC = () => {
   return (
     <>
-      <span>Project</span>
+      <span>Notice</span>
       {/*  
       Project
       - 진행중, 진행예정, 진행완료 프로젝트 리스트
@@ -17,4 +17,4 @@ const Project: FC = () => {
   );
 };
 
-export default Project;
+export default Notice;

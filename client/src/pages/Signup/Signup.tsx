@@ -34,7 +34,6 @@ const Signup: FC = () => {
     },
     [part],
   );
-
   return (
     <>
       {signupSuccess ? (
