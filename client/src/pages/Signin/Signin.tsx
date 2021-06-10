@@ -69,7 +69,9 @@ const Signin = () => {
 
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Form.Item name="remember">
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox checked={isLoginState} onChange={onChangeLoginState}>
+                Remember me
+              </Checkbox>
             </Form.Item>
             <Form.Item>
               <Button type="primary" onClick={onClickSignIn} disabled={!email || !password}>
