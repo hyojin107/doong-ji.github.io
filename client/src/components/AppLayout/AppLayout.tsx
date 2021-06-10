@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { Button, Menu } from 'antd';
 import Layout, { Footer, Header } from 'antd/lib/layout/layout';
-import SubMenu from 'antd/lib/menu/SubMenu';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback } from 'react';
 import { Link, Link as LinkR } from 'react-router-dom';
 import { animateScroll as scroll } from 'react-scroll';
 const AppLayout: FC = ({ children }) => {
@@ -65,10 +64,12 @@ const AppLayout: FC = ({ children }) => {
             <Menu.Item key="6">
               <Link to="question"> Q & A</Link>
             </Menu.Item>
-
-            <Button type="primary" shape="round" style={{ left: '50px' }}>
-              <Link to="signup">Sign in</Link>
-            </Button>
+            <Menu.Item key="7">
+              <Link to="signup"> Sign up</Link>
+            </Menu.Item>
+            <Menu.Item key="8">
+              <Link to="signin"> Sign in</Link>
+            </Menu.Item>
           </Menu>
         </Header>
         {children}
@@ -80,11 +81,6 @@ const AppLayout: FC = ({ children }) => {
           Footer
         </Footer>
       </Layout>
-
-      {/* 
-        반복되는 상단 Header layout 적용
-        로고  --  둥지소개, 공지사항, 커뮤니티, 프로젝트, 캘린터, Q & A, 상단 로그인/회원가입
-      */}
     </>
   );
 };
