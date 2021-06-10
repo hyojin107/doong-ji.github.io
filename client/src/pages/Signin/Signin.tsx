@@ -1,72 +1,101 @@
-import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Form, Input, Button, Checkbox } from 'antd';
 
-import { SignInSection, SignInTitle } from './styled';
+import { SignInSection, SocialLogin, SigninText, SocialLogo, SignInForm, SignInImg } from './styled';
+import { GOOGLE_AUTH_URL, NAVER_AUTH_URL, KAKAO_AUTH_URL } from '@/utils/socialUrl';
 import useChange from '@/hooks/useChange';
-import { Form, Input, Button, Checkbox, Row, Col, message } from 'antd';
+import naver from '@/images/Signin/naver.png';
+import kakao from '@/images/Signin/kakao.png';
+import google from '@/images/Signin/google.png';
+import doongji from '@/images/Main/doongji.png';
 
 const Signin = () => {
-  const history = useHistory();
-  const [email, setEmail, onChangeEmail] = useChange('');
-  const [password, setPassword, onChangePassword] = useChange('');
-  const onClickSignIn = useCallback(() => {}, [email, password]);
+  const [email, onChangeEmail] = useChange('');
+  const [password, onChangePassword] = useChange('');
+  const [isLoginState, setIsLoginState] = useState(false); //로그인 상태 유지
+
+  const onClickSignIn = useCallback(() => {
+    //signin dispatch
+  }, [email, password]); //signin
+
+  const onChangeLoginState = useCallback(() => {
+    setIsLoginState(!isLoginState);
+  }, []); //로그인 상태 유지
+
   return (
     <SignInSection>
-      <Row>
-        <Col span={12}>col-12</Col>
-        <Col span={12}>
-          <SignInTitle>로그인</SignInTitle>
-          <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{
-              remember: true,
-            }}
+      <SignInImg>
+        <img src={doongji} alt="logo" />
+      </SignInImg>
+      <SignInForm>
+        <h1>로그인</h1>
+        <Form
+          name="login"
+          initialValues={{
+            remember: true,
+          }}
+        >
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Email!',
+              },
+            ]}
           >
-            <Form.Item
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your Username!',
-                },
-              ]}
-            >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
-            </Form.Item>
+            <Input prefix={<UserOutlined />} placeholder="Email" value={email} onChange={onChangeEmail} />
+          </Form.Item>
 
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your Password!',
-                },
-              ]}
-            >
-              <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" />
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Password!',
+              },
+            ]}
+          >
+            <Input.Password
+              prefix={<LockOutlined />}
+              placeholder="Password"
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              value={password}
+              onChange={onChangePassword}
+            />
+          </Form.Item>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Form.Item name="remember">
+              <Checkbox>Remember me</Checkbox>
             </Form.Item>
             <Form.Item>
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-
-              <a className="login-form-forgot" href="">
-                비밀번호 찾기
-              </a>
-              <span>/</span>
-              <a href="">회원가입</a>
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
+              <Button type="primary" onClick={onClickSignIn} disabled={!email || !password}>
                 Log in
               </Button>
             </Form.Item>
-          </Form>
-        </Col>
-      </Row>
+          </div>
+
+          <SigninText>
+            <Link to="/signup">비밀번호 찾기</Link>
+            <Link to="/signup">회원가입</Link>
+          </SigninText>
+
+          <SocialLogin>
+            <Link to={GOOGLE_AUTH_URL}>
+              <SocialLogo src={google} />
+            </Link>
+            <Link to={NAVER_AUTH_URL}>
+              <SocialLogo src={naver} />
+            </Link>
+            <Link to={KAKAO_AUTH_URL}>
+              <SocialLogo src={kakao} />
+            </Link>
+          </SocialLogin>
+        </Form>
+      </SignInForm>
     </SignInSection>
   );
 };
