@@ -1,7 +1,6 @@
-import styled from '@emotion/styled';
 import { Button, Form, Input, InputNumber, Modal, Switch } from 'antd';
+import { IsMemberContent, NonMemberContent } from './styeld';
 import { FC, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const layout = {
   labelCol: { span: 8 },
@@ -82,12 +81,5 @@ const DoongjiJoin: FC = () => {
     </>
   );
 };
-const IsMemberContent = styled.div`
-  width: 100%;
-  padding: 50px;
-`;
-const NonMemberContent = styled.div`
-  width: 100%;
-  padding: 50px;
-`;
+
 export default DoongjiJoin;

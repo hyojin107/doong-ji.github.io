@@ -1,8 +1,7 @@
-import styled from '@emotion/styled';
-import { Button, Card, Carousel, List } from 'antd';
-import { Meta } from 'antd/lib/list/Item';
+import { Button, Carousel } from 'antd';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { ProjectItem } from './styeld';
 
 const data = [
   {
@@ -58,35 +57,5 @@ const ProjectCarousel: FC = () => {
     </>
   );
 };
-const ProjectItem = styled.div`
-  height: 700px;
-  color: #fff;
-  line-height: 160px;
-  text-align: center;
-  background: #364d79;
-  h1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-weight: bold;
-    font-size: 10rem;
-    width: 100%;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom;
-  }
-  button {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    font-size: 2rem;
-    height: auto;
-  }
-`;
+
 export default ProjectCarousel;

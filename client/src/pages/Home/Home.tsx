@@ -5,7 +5,6 @@ import PartAbout from '@/components/Home/PartAbout';
 import QuestionList from '@/components/Home/QuestionList';
 import DoongjiJoin from '@/components/Home/DoongjiJoin';
 import { FC } from 'react';
-import { Breadcrumb } from 'antd';
 import styled from '@emotion/styled';
 
 const Home: FC = () => {
