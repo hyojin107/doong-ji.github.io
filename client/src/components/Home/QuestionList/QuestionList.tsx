@@ -1,6 +1,9 @@
 import { Button, Card, List } from 'antd';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+
+import { Content } from 'antd/lib/layout/layout';
+import { SiteLayoutBackground } from './styeld';
 const data = [
   {
     id: '1',
@@ -20,22 +23,22 @@ const data = [
 ];
 const QuestionList: FC = () => {
   return (
-    <>
-      <List
-        grid={{ gutter: 16, column: 3 }}
-        dataSource={data}
-        renderItem={(item) => (
-          <Link to={`question/${item.id}`}>
+    <Content className="site-layout" style={{ padding: '0 50px' }}>
+      <SiteLayoutBackground style={{ padding: 24, minHeight: 380 }}>
+        <List
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={(item) => (
             <List.Item>
-              <Card title={item.title}>{item.contents}</Card>
+              <List.Item.Meta title={<a href="https://ant.design">{item.title}</a>} description={item.contents} />
             </List.Item>
-          </Link>
-        )}
-      />
-      <Button type="primary" shape="round">
-        <Link to="question">Q & A 바로가기</Link>
-      </Button>
-    </>
+          )}
+        />
+        <Button type="primary" shape="round">
+          <Link to="question">Q & A 바로가기</Link>
+        </Button>
+      </SiteLayoutBackground>
+    </Content>
   );
 };
 

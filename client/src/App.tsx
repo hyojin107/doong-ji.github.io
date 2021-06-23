@@ -20,7 +20,6 @@ function App(): JSX.Element {
     <Router>
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyle} />
-        {/* components의 Header */}
         <Switch>
           <AppLayout>
             <Route path="/" exact component={Home} />
@@ -37,7 +36,6 @@ function App(): JSX.Element {
           </AppLayout>
         </Switch>
       </ThemeProvider>
-      {/* components의 Footer */}
     </Router>
   );
 }
