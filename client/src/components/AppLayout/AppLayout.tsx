@@ -1,25 +1,10 @@
-import styled from '@emotion/styled';
-import { Button, Menu } from 'antd';
+import { Menu } from 'antd';
 import Layout, { Footer, Header } from 'antd/lib/layout/layout';
-import SubMenu from 'antd/lib/menu/SubMenu';
-import { FC, useCallback, useEffect, useState } from 'react';
-import { Link, Link as LinkR } from 'react-router-dom';
+import { FC, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { animateScroll as scroll } from 'react-scroll';
+import { Logo } from './styled';
 const AppLayout: FC = ({ children }) => {
-  // TopNav scroll시 고정
-  // const [scrollNav, setScrollNav] = useState(false);
-
-  // const changeNav = () => {
-  //   if (window.scrollY >= 160) {
-  //     setScrollNav(true);
-  //   } else {
-  //     setScrollNav(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   window.addEventListener('scroll', changeNav);
-  // }, []);
-
   const toggleHome = useCallback(() => {
     scroll.scrollToTop();
   }, []);
@@ -51,7 +36,6 @@ const AppLayout: FC = ({ children }) => {
                 <Menu.Item key="setting:4">프로젝트게시판</Menu.Item>
               </Menu.ItemGroup>
             </Menu.SubMenu>
-
             <Menu.SubMenu key="4" title={<Link to="project">프로젝트</Link>}>
               <Menu.ItemGroup title="프로젝트">
                 <Menu.Item key="setting:1">진행중</Menu.Item>
@@ -65,10 +49,12 @@ const AppLayout: FC = ({ children }) => {
             <Menu.Item key="6">
               <Link to="question"> Q & A</Link>
             </Menu.Item>
-
-            <Button type="primary" shape="round" style={{ left: '50px' }}>
-              <Link to="signup">Sign in</Link>
-            </Button>
+            <Menu.Item key="7">
+              <Link to="signup"> Sign up</Link>
+            </Menu.Item>
+            <Menu.Item key="8">
+              <Link to="signin"> Sign in</Link>
+            </Menu.Item>
           </Menu>
         </Header>
         {children}
@@ -80,19 +66,8 @@ const AppLayout: FC = ({ children }) => {
           Footer
         </Footer>
       </Layout>
-
-      {/* 
-        반복되는 상단 Header layout 적용
-        로고  --  둥지소개, 공지사항, 커뮤니티, 프로젝트, 캘린터, Q & A, 상단 로그인/회원가입
-      */}
     </>
   );
 };
-const Logo = styled(LinkR)`
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.2);
-`;
+
 export default AppLayout;
