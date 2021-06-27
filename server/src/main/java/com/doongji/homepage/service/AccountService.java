@@ -3,6 +3,7 @@ package com.doongji.homepage.service;
 import com.doongji.homepage.entity.account.AlarmFlag;
 import com.doongji.homepage.entity.account.Account;
 import com.doongji.homepage.entity.account.PartName;
+import com.doongji.homepage.entity.account.Role;
 import com.doongji.homepage.exception.NotFoundException;
 import com.doongji.homepage.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,8 @@ public class AccountService {
 
         return accountRepository.save(
                 new Account(
-                        email, name, passwordEncoder.encode(password), nickname, PartName.valueOf(partName.toUpperCase()), AlarmFlag.ON
+                        email, name, passwordEncoder.encode(password), nickname,
+                        PartName.valueOf(partName.toUpperCase()), AlarmFlag.ON, Role.GUEST
                 )
         );
     }
