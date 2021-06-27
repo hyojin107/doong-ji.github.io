@@ -45,13 +45,17 @@ public class Account extends BaseTimeEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private AlarmFlag alarmFlag;
 
-    public Account(String email, String name, String password, String nickname, PartName partName, AlarmFlag alarmFlag) {
-        this(null, email, name, password, nickname, partName, null, null, alarmFlag);
+    public Account(String email, String name, String password, String nickname, PartName partName, AlarmFlag alarmFlag, Role role) {
+        this(null, email, name, password, nickname, partName, null, null, alarmFlag, role);
     }
 
-    public Account(Long accountId, String email, String name, String password, String nickname, PartName partName, String introduce, String profilePath, AlarmFlag alarmFlag) {
+    public Account(Long accountId, String email, String name, String password, String nickname, PartName partName, String introduce, String profilePath, AlarmFlag alarmFlag, Role role) {
         checkArgument(isNotEmpty(email), "email must be provided.");
         checkArgument(
                 email.length() >= 4 && email.length() <= 50,
@@ -65,6 +69,8 @@ public class Account extends BaseTimeEntity {
         );
         checkNotNull(password, "password must be provided.");
         checkArgument(isNotEmpty(nickname), "nickname must be provided.");
+        checkNotNull(alarmFlag, "alarmFlag must be provided.");
+        checkNotNull(role, "role must be provided.");
 
         this.accountId = accountId;
         this.email = email;
@@ -75,6 +81,7 @@ public class Account extends BaseTimeEntity {
         this.introduce = introduce;
         this.profilePath = profilePath;
         this.alarmFlag = alarmFlag;
+        this.role = role;
     }
 
     private static boolean checkEmail(String email) {

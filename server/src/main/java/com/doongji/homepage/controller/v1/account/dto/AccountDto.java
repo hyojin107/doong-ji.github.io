@@ -28,14 +28,17 @@ public class AccountDto {
     @ApiModelProperty(value = "개발파트", required = true)
     private String partName;
 
-    @ApiModelProperty(value = "자기소개", required = true)
+    @ApiModelProperty(value = "자기소개", required = false)
     private String introduce;
 
-    @ApiModelProperty(value = "프로필사진경로", required = true)
+    @ApiModelProperty(value = "프로필사진경로", required = false)
     private String profilePath;
 
-    @ApiModelProperty(value = "알람여부", required = true)
+    @ApiModelProperty(value = "알람여부", required = false)
     private String alarmFlag;
+
+    @ApiModelProperty(value = "사용자 권한", required = false)
+    private String role;
 
     public AccountDto(Account source) {
         copyProperties(source, this);
