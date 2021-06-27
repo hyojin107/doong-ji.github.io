@@ -64,26 +64,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
+        http
+            .csrf()
                 .disable()
-                .headers()
-                    .disable()
-                .exceptionHandling()
+            .headers()
+                .disable()
+            .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .authorizeRequests()
-                        .antMatchers("/api/auth").permitAll()
-                        .antMatchers("/api/v?/main-data").permitAll()
-                        .antMatchers("/api/v?/user/join").permitAll()
-                        .antMatchers("/api/v?/post/**").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
-                        .anyRequest().authenticated()
+            .authorizeRequests()
+                .antMatchers("/api/auth").permitAll()
+                .antMatchers("/api/v?/main-data").permitAll()
+                .antMatchers("/api/v?/user/join").permitAll()
+                .antMatchers("/api/v?/post/**").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .disable();
+            .formLogin()
+                .disable();
         http.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
