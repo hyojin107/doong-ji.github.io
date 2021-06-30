@@ -37,7 +37,7 @@ public class Account extends BaseTimeEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private PartName partName;
+    private Part partName;
 
     private String introduce;
 
@@ -51,11 +51,11 @@ public class Account extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private AlarmFlag alarmFlag;
 
-    public Account(String email, String name, String password, String nickname, PartName partName, AlarmFlag alarmFlag, Role role) {
+    public Account(String email, String name, String password, String nickname, Part partName, AlarmFlag alarmFlag, Role role) {
         this(null, email, name, password, nickname, partName, null, null, alarmFlag, role);
     }
 
-    public Account(Long accountId, String email, String name, String password, String nickname, PartName partName, String introduce, String profilePath, AlarmFlag alarmFlag, Role role) {
+    public Account(Long accountId, String email, String name, String password, String nickname, Part partName, String introduce, String profilePath, AlarmFlag alarmFlag, Role role) {
         checkArgument(isNotEmpty(email), "email must be provided.");
         checkArgument(
                 email.length() >= 4 && email.length() <= 50,

@@ -2,7 +2,7 @@ package com.doongji.homepage.controller.v1.account.dto;
 
 import com.doongji.homepage.entity.account.Account;
 import com.doongji.homepage.entity.account.AlarmFlag;
-import com.doongji.homepage.entity.account.PartName;
+import com.doongji.homepage.entity.account.Part;
 import com.doongji.homepage.entity.account.Role;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -29,7 +29,7 @@ public class AccountDto {
     private String nickname;
 
     @ApiModelProperty(value = "개발파트", required = true)
-    private PartName partName;
+    private Part partName;
 
     @ApiModelProperty(value = "자기소개", required = false)
     private String introduce;

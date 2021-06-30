@@ -3,14 +3,14 @@ package com.doongji.homepage.entity.account;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum PartName {
+public enum Part {
 
     PUBLISHING("퍼블리싱"),
     FRONTEND("프론트엔드"),
-    SPRING("스프링"),
-    NODEJS("노드js"),
+    BACKEND("백엔드"),
     ANDROID("안드로이드"),
-    IOS("ios");
+    IOS("ios"),
+    ETC("기타");
 
     private final String value;
 
