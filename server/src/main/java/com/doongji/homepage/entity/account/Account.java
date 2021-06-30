@@ -71,6 +71,8 @@ public class Account extends BaseTimeEntity {
         checkArgument(isNotEmpty(nickname), "nickname must be provided.");
         checkNotNull(alarmFlag, "alarmFlag must be provided.");
         checkNotNull(role, "role must be provided.");
+        checkNotNull(partName, "partName must be provided.");
+
 
         this.accountId = accountId;
         this.email = email;
