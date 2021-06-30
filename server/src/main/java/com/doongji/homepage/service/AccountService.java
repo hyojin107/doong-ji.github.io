@@ -2,7 +2,7 @@ package com.doongji.homepage.service;
 
 import com.doongji.homepage.entity.account.AlarmFlag;
 import com.doongji.homepage.entity.account.Account;
-import com.doongji.homepage.entity.account.PartName;
+import com.doongji.homepage.entity.account.Part;
 import com.doongji.homepage.entity.account.Role;
 import com.doongji.homepage.exception.NotFoundException;
 import com.doongji.homepage.repository.AccountRepository;
@@ -30,12 +30,12 @@ public class AccountService {
                 password.length() >= 8 && password.length() <= 15,
                 "password length must be between 8 and 15 characters."
         );
-        checkArgument(EnumUtils.isValidEnumIgnoreCase(PartName.class, partName), "partName must be a valid value.");
+        checkArgument(EnumUtils.isValidEnumIgnoreCase(Part.class, partName), "partName must be a valid value.");
 
         return accountRepository.save(
                 new Account(
                         email, name, passwordEncoder.encode(password), nickname,
-                        PartName.valueOf(partName.toUpperCase()), AlarmFlag.ON, Role.GUEST
+                        Part.valueOf(partName.toUpperCase()), AlarmFlag.ON, Role.GUEST
                 )
         );
     }
