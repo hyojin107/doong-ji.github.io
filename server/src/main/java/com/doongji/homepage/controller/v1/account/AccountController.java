@@ -34,7 +34,7 @@ public class AccountController {
                 joinRequest.getName(),
                 joinRequest.getPassword(),
                 joinRequest.getNickname(),
-                joinRequest.getPartName()
+                joinRequest.getPart()
         );
         String token = user.createToken(jwt, new String[]{Role.GUEST.value()});
         return ResponseEntity.ok(new JoinResult(token, new AccountDto(user)));
