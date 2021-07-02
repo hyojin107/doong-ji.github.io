@@ -29,7 +29,7 @@ public class AccountDto {
     private String nickname;
 
     @ApiModelProperty(value = "개발파트", required = true)
-    private Part partName;
+    private Part part;
 
     @ApiModelProperty(value = "자기소개", required = false)
     private String introduce;

@@ -37,7 +37,7 @@ public class Account extends BaseTimeEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Part partName;
+    private Part part;
 
     private String introduce;
 
@@ -51,11 +51,11 @@ public class Account extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private AlarmFlag alarmFlag;
 
-    public Account(String email, String name, String password, String nickname, Part partName, AlarmFlag alarmFlag, Role role) {
-        this(null, email, name, password, nickname, partName, null, null, alarmFlag, role);
+    public Account(String email, String name, String password, String nickname, Part part, AlarmFlag alarmFlag, Role role) {
+        this(null, email, name, password, nickname, part, null, null, alarmFlag, role);
     }
 
-    public Account(Long accountId, String email, String name, String password, String nickname, Part partName, String introduce, String profilePath, AlarmFlag alarmFlag, Role role) {
+    public Account(Long accountId, String email, String name, String password, String nickname, Part part, String introduce, String profilePath, AlarmFlag alarmFlag, Role role) {
         checkArgument(isNotEmpty(email), "email must be provided.");
         checkArgument(
                 email.length() >= 4 && email.length() <= 50,
@@ -71,7 +71,7 @@ public class Account extends BaseTimeEntity {
         checkArgument(isNotEmpty(nickname), "nickname must be provided.");
         checkNotNull(alarmFlag, "alarmFlag must be provided.");
         checkNotNull(role, "role must be provided.");
-        checkNotNull(partName, "partName must be provided.");
+        checkNotNull(part, "part must be provided.");
 
 
         this.accountId = accountId;
@@ -79,7 +79,7 @@ public class Account extends BaseTimeEntity {
         this.name = name;
         this.password = password;
         this.nickname = nickname;
-        this.partName = partName;
+        this.part = part;
         this.introduce = introduce;
         this.profilePath = profilePath;
         this.alarmFlag = alarmFlag;
