@@ -42,9 +42,9 @@ public class JwtProvider implements AuthenticationProvider {
             JwtToken authenticated = new JwtToken(
                     new JwtAuthentication(account.getAccountId(), account.getEmail()),
                     null,
-                    createAuthorityList(Role.valueOf(account.getRole().value()).value())
+                    createAuthorityList(account.getRole().name())
             );
-            String token = account.createToken(jwt, new String[]{Role.valueOf(account.getRole().value()).value()});
+            String token = account.createToken(jwt, new String[]{account.getRole().name()});
             authenticated.setDetails(new AuthenticationResult(token, account));
             return authenticated;
         } catch (NotFoundException e) {
