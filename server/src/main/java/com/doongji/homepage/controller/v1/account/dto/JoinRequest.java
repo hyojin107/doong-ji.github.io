@@ -22,6 +22,6 @@ public class JoinRequest {
     private String nickname;
 
     @ApiModelProperty(value = "개발파트", required = true)
-    private String partName;
+    private String part;
 
 }
