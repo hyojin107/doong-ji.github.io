@@ -1,23 +1,39 @@
 package com.doongji.homepage.service.account;
 
 import com.doongji.homepage.entity.account.Account;
-import com.doongji.homepage.entity.account.PartName;
+import com.doongji.homepage.entity.account.AlarmFlag;
+import com.doongji.homepage.entity.account.Part;
+import com.doongji.homepage.entity.account.Role;
+import com.doongji.homepage.repository.AccountRepository;
 import com.doongji.homepage.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.times;
 
-@Slf4j
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Slf4j
 public class AccountServiceTest {
 
-    @Autowired
+    @InjectMocks
     private AccountService accountService;
+
+    @Mock
+    private AccountRepository accountRepository;
+
+    @Mock
+    public PasswordEncoder passwordEncoder;
 
     private String email;
 
@@ -27,7 +43,9 @@ public class AccountServiceTest {
 
     private String nickname;
 
-    private String partName;
+    private String part;
+
+    private Account account;
 
     @BeforeAll
     void setUp() {
@@ -35,30 +53,47 @@ public class AccountServiceTest {
         email = "doongji.team@gmail.com";
         password = "Ppp@ssword1";
         nickname = "둥지닉넴";
-        partName = "spring";
+        part = "backend";
+        account = new Account(null, email, name, password, nickname,
+                Part.valueOf(part.toUpperCase()), null, null, AlarmFlag.ON, Role.GUEST);
     }
+
     @Test
-    @Order(1)
     void 사용자_회원가입() {
-        Account account = accountService.join(email, name, password, nickname, partName);
-        assertThat(account).isNotNull();
-        assertThat(account.getEmail()).isEqualTo(email);
-        assertThat(account.getName()).contains(name);
-        assertThat(account.getNickname()).contains(nickname);
-        assertThat(account.getPartName()).isEqualTo(PartName.valueOf(partName.toUpperCase()));
+        // given
+        given(passwordEncoder.encode(anyString())).willReturn(password);
+        given(accountRepository.save(any(Account.class))).willReturn(account);
+
+        // when
+        Account resultAccount = accountService.join(email, name, password, nickname, part);
+
+        // then
+        then(accountRepository).should(times(1)).save(account);
+        assertThat(resultAccount).isNotNull();
+        assertThat(resultAccount.getEmail()).isEqualTo(email);
+        assertThat(resultAccount.getName()).isEqualTo(name);
+        assertThat(resultAccount.getNickname()).isEqualTo(nickname);
+        assertThat(resultAccount.getRole()).isEqualTo(Role.GUEST);
         log.info("Account: {}", account);
     }
 
     @Test
-    @Order(2)
     void 사용자_로그인() {
-        Account account = accountService.login(email, password);
-        assertThat(account).isNotNull();
-        assertThat(account.getEmail()).isEqualTo(email);
-        assertThat(account.getName()).contains(name);
-        assertThat(account.getNickname()).contains(nickname);
-        assertThat(account.getPartName()).isEqualTo(PartName.valueOf(partName.toUpperCase()));
-        log.info("Login User: {}", account);
+        // given
+        given(passwordEncoder.encode(anyString())).willReturn(password);
+        given(passwordEncoder.matches(any(), any())).willReturn(true);
+        given(accountRepository.findByEmail(anyString())).willReturn(java.util.Optional.of(account));
+
+        // when
+        Account resultAccount = accountService.login(email, password);
+
+        // then
+        assertThat(resultAccount).isNotNull();
+        assertThat(resultAccount.getEmail()).isEqualTo(email);
+        assertThat(resultAccount.getName()).contains(name);
+        assertThat(resultAccount.getNickname()).contains(nickname);
+        assertThat(resultAccount.getPart()).isEqualTo(Part.valueOf(part.toUpperCase()));
+        log.info("Login User: {}", resultAccount);
     }
 
 }
