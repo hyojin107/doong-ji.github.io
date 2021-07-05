@@ -1,5 +1,6 @@
 package com.doongji.homepage.controller.v1.account.dto;
 
+import com.doongji.homepage.entity.account.Part;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -22,6 +23,9 @@ public class JoinRequest {
     private String nickname;
 
     @ApiModelProperty(value = "개발파트", required = true)
-    private String part;
+    private Part part;
 
+    public void setPart(String part) {
+        this.part = Part.valueOf(part.toUpperCase());
+    }
 }

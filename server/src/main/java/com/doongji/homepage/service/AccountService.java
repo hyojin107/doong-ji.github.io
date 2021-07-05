@@ -24,18 +24,18 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Account join(String email, String name, String password, String nickname, String part) {
+    public Account join(String email, String name, String password, String nickname, Part part) {
         checkNotNull(password, "password must be provided.");
         checkArgument(
                 password.length() >= 8 && password.length() <= 15,
                 "password length must be between 8 and 15 characters."
         );
-        checkArgument(EnumUtils.isValidEnumIgnoreCase(Part.class, part), "part must be a valid value.");
+        checkNotNull(part, "part must be a valid value.");
 
         return accountRepository.save(
                 new Account(
                         email, name, passwordEncoder.encode(password), nickname,
-                        Part.valueOf(part.toUpperCase()), AlarmFlag.ON, Role.GUEST
+                        part, AlarmFlag.ON, Role.GUEST
                 )
         );
     }
