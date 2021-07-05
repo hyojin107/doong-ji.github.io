@@ -43,7 +43,7 @@ public class AccountServiceTest {
 
     private String nickname;
 
-    private String part;
+    private Part part;
 
     private Account account;
 
@@ -53,9 +53,9 @@ public class AccountServiceTest {
         email = "doongji.team@gmail.com";
         password = "Ppp@ssword1";
         nickname = "둥지닉넴";
-        part = "backend";
+        part = Part.BACKEND;
         account = new Account(null, email, name, password, nickname,
-                Part.valueOf(part.toUpperCase()), null, null, AlarmFlag.ON, Role.GUEST);
+                part, null, null, AlarmFlag.ON, Role.GUEST);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class AccountServiceTest {
         assertThat(resultAccount.getEmail()).isEqualTo(email);
         assertThat(resultAccount.getName()).contains(name);
         assertThat(resultAccount.getNickname()).contains(nickname);
-        assertThat(resultAccount.getPart()).isEqualTo(Part.valueOf(part.toUpperCase()));
+        assertThat(resultAccount.getPart()).isEqualTo(part);
         log.info("Login User: {}", resultAccount);
     }
 
