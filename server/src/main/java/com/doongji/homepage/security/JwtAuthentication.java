@@ -9,7 +9,7 @@ public class JwtAuthentication {
     public final String email;
 
     JwtAuthentication(Long accountId, String email) {
-        checkNotNull(accountId, "userId must be provided.");
+        checkNotNull(accountId, "accountId must be provided.");
         checkNotNull(email, "email must be provided.");
 
         this.accountId = accountId;
