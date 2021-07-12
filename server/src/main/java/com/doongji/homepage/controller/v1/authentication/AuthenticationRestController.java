@@ -1,10 +1,10 @@
 package com.doongji.homepage.controller.v1.authentication;
 
-import com.doongji.homepage.controller.v1.authentication.dto.AuthenticationResultDto;
+import com.doongji.homepage.controller.v1.authentication.dto.AuthenticationResponse;
 import com.doongji.homepage.exception.UnauthorizedException;
-import com.doongji.homepage.security.AuthenticationRequest;
+import com.doongji.homepage.controller.v1.authentication.dto.AuthenticationRequest;
 import com.doongji.homepage.security.AuthenticationResult;
-import com.doongji.homepage.security.JwtToken;
+import com.doongji.homepage.security.jwtAuth.PreAuthorizationToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -28,13 +28,13 @@ public class AuthenticationRestController {
 
     @ApiOperation(value = "사용자 로그인 (JWT 불필요)")
     @PostMapping
-    public ResponseEntity<AuthenticationResultDto> authentication(@RequestBody AuthenticationRequest authRequest) throws UnauthorizedException {
+    public ResponseEntity<AuthenticationResponse> authentication(@RequestBody AuthenticationRequest authRequest) throws UnauthorizedException {
         try {
-            JwtToken token = new JwtToken(authRequest.getEmail(), authRequest.getPassword());
-            Authentication authentication = authenticationManager.authenticate(token);
+            PreAuthorizationToken preToken = new PreAuthorizationToken(authRequest.getEmail(), authRequest.getPassword());
+            Authentication authentication = authenticationManager.authenticate(preToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return ResponseEntity.ok(
-                    new AuthenticationResultDto((AuthenticationResult) authentication.getDetails())
+                    new AuthenticationResponse((AuthenticationResult) authentication.getDetails())
             );
         } catch (AuthenticationException e) {
             throw new UnauthorizedException(e.getMessage());

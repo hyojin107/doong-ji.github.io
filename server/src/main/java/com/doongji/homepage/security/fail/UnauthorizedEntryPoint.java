@@ -1,6 +1,7 @@
-package com.doongji.homepage.security;
+package com.doongji.homepage.security.fail;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -12,15 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
+@RequiredArgsConstructor
+public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
 
-    static ResponseEntity<?> E401 = new ResponseEntity<>("Authentication error (cause: unauthorized)", HttpStatus.UNAUTHORIZED);
+    static ResponseEntity<?> E401 = new ResponseEntity<>("Authentication unauthorized error", HttpStatus.UNAUTHORIZED);
 
     private final ObjectMapper objectMapper;
-
-    public EntryPointUnauthorizedHandler(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
