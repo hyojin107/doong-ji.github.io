@@ -1,6 +1,7 @@
-package com.doongji.homepage.security;
+package com.doongji.homepage.security.fail;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -12,15 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
-    static ResponseEntity<?> E403 = new ResponseEntity<>("Authentication error (cause: forbidden)", HttpStatus.FORBIDDEN);
+    static ResponseEntity<?> E403 = new ResponseEntity<>("Authentication forbidden error!", HttpStatus.FORBIDDEN);
 
     private final ObjectMapper objectMapper;
-
-    public JwtAccessDeniedHandler(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {

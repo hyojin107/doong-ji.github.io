@@ -1,7 +1,6 @@
 package com.doongji.homepage.entity.account;
 
 import com.doongji.homepage.entity.BaseTimeEntity;
-import com.doongji.homepage.security.Jwt;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -14,6 +13,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 @Getter
 @Entity
+//@Builder
 @EqualsAndHashCode(of = "accountId", callSuper = false)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -94,11 +94,6 @@ public class Account extends BaseTimeEntity {
     public void login(PasswordEncoder passwordEncoder, String credentials) {
         if (!passwordEncoder.matches(credentials, password))
             throw new IllegalArgumentException("Bad credential");
-    }
-
-    public String createToken(Jwt jwt, String[] roles) {
-        Jwt.Claims claims = Jwt.Claims.of(accountId, email, roles);
-        return jwt.newToken(claims);
     }
 
 }

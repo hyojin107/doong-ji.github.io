@@ -5,7 +5,7 @@ import com.doongji.homepage.controller.v1.account.dto.JoinRequest;
 import com.doongji.homepage.controller.v1.account.dto.JoinResult;
 import com.doongji.homepage.entity.account.Account;
 import com.doongji.homepage.entity.account.Role;
-import com.doongji.homepage.security.Jwt;
+import com.doongji.homepage.security.JwtTokenUtil;
 import com.doongji.homepage.service.AccountService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +24,7 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    private final Jwt jwt;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @ApiOperation(value = "사용자 등록 (JWT 불필요)")
     @PostMapping(path = "user/join")
@@ -36,7 +36,7 @@ public class AccountController {
                 joinRequest.getNickname(),
                 joinRequest.getPart()
         );
-        String token = user.createToken(jwt, new String[]{Role.GUEST.value()});
+        String token = jwtTokenUtil.createToken(user.getAccountId(), user.getEmail(), new String[]{Role.GUEST.value()});
         return ResponseEntity.ok(new JoinResult(token, new AccountDto(user)));
     }
 

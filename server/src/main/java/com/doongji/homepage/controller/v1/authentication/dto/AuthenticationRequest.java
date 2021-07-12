@@ -1,12 +1,13 @@
-package com.doongji.homepage.security;
+package com.doongji.homepage.controller.v1.authentication.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
+@AllArgsConstructor
 public class AuthenticationRequest {
 
     @ApiModelProperty(value = "이메일", required = true)

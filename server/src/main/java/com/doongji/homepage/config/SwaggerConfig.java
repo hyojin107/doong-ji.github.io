@@ -2,6 +2,7 @@ package com.doongji.homepage.config;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,7 +27,8 @@ import static springfox.documentation.builders.RequestHandlerSelectors.withMetho
 @RequiredArgsConstructor
 public class SwaggerConfig implements WebMvcConfigurer {
 
-    private final JwtTokenConfig jwtTokenConfig;
+    @Value("${jwt.token.header")
+    private String jwtHeader;
 
     @Bean
     public Docket swaggerApi() {
@@ -61,7 +63,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey("x-access-token", jwtTokenConfig.getHeader(), "header");
+        return new ApiKey("x-access-token", jwtHeader, "header");
     }
 
     private SecurityContext securityContext() {

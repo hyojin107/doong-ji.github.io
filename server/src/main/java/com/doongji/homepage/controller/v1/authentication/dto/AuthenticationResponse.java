@@ -12,7 +12,7 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @Getter
 @Setter
 @ToString
-public class AuthenticationResultDto {
+public class AuthenticationResponse {
 
     @ApiModelProperty(value = "API 토큰", required = true)
     private String token;
@@ -20,7 +20,7 @@ public class AuthenticationResultDto {
     @ApiModelProperty(value = "사용자 정보", required = true)
     private AccountDto account;
 
-    public AuthenticationResultDto(AuthenticationResult source) {
+    public AuthenticationResponse(AuthenticationResult source) {
         copyProperties(source, this);
 
         this.account = new AccountDto(source.getAccount());
