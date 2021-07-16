@@ -56,6 +56,7 @@ public class Account extends BaseTimeEntity {
         this(null, email, name, password, nickname, part, null, null, alarmFlag, role);
     }
 
+    @Builder
     public Account(Long accountId, String email, String name, String password, String nickname, Part part, String introduce, String profilePath, AlarmFlag alarmFlag, Role role) {
         checkArgument(isNotEmpty(email), "email must be provided.");
         checkArgument(

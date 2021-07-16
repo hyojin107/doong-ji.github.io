@@ -33,10 +33,15 @@ public class AccountService {
         checkNotNull(part, "part must be a valid value.");
 
         return accountRepository.save(
-                new Account(
-                        email, name, passwordEncoder.encode(password), nickname,
-                        part, AlarmFlag.ON, Role.GUEST
-                )
+                Account.builder()
+                        .email(email)
+                        .name(name)
+                        .password(passwordEncoder.encode(password))
+                        .nickname(nickname)
+                        .part(part)
+                        .alarmFlag(AlarmFlag.ON)
+                        .role(Role.GUEST)
+                        .build()
         );
     }
 
