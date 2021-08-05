@@ -25,7 +25,4 @@ public class JoinRequest {
     @ApiModelProperty(value = "개발파트", required = true)
     private Part part;
 
-    public void setPart(String part) {
-        this.part = Part.valueOf(part.toUpperCase());
-    }
 }
