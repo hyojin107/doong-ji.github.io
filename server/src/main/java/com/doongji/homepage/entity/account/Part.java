@@ -1,5 +1,6 @@
 package com.doongji.homepage.entity.account;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -16,6 +17,11 @@ public enum Part {
 
     public String value() {
         return value;
+    }
+
+    @JsonCreator
+    public static Part converter(String part) {
+        return Part.valueOf(part.toUpperCase());
     }
 
 }
