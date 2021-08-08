@@ -7,10 +7,11 @@ import com.doongji.homepage.entity.account.Role;
 import com.doongji.homepage.repository.AccountRepository;
 import com.doongji.homepage.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,10 +21,8 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.times;
 
-@SpringBootTest
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
+@ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {
 
     @InjectMocks
@@ -35,32 +34,22 @@ public class AccountServiceTest {
     @Mock
     public PasswordEncoder passwordEncoder;
 
-    private String email;
-
-    private String name;
-
-    private String password;
-
-    private String nickname;
-
-    private Part part;
-
-    private Account account;
-
-    @BeforeAll
-    void setUp() {
-        name = "둥지";
-        email = "doongji.team@gmail.com";
-        password = "Ppp@ssword1";
-        nickname = "둥지닉넴";
-        part = Part.BACKEND;
-        account = new Account(null, email, name, password, nickname,
-                part, null, null, AlarmFlag.ON, Role.GUEST);
-    }
-
     @Test
     void 사용자_회원가입() {
         // given
+        String name = "둥지";
+        String email = "doongji.team@gmail.com";
+        String password = "Ppp@ssword1";
+        String nickname = "둥지닉넴";
+        Part part = Part.BACKEND;
+        Account account = Account.builder()
+                .email(email)
+                .name(name)
+                .password(password)
+                .nickname(nickname)
+                .part(part)
+                .alarmFlag(AlarmFlag.ON).role(Role.GUEST).build();
+
         given(passwordEncoder.encode(anyString())).willReturn(password);
         given(accountRepository.save(any(Account.class))).willReturn(account);
 
@@ -80,9 +69,19 @@ public class AccountServiceTest {
     @Test
     void 사용자_로그인() {
         // given
-        given(passwordEncoder.encode(anyString())).willReturn(password);
+        String name = "둥지";
+        String email = "doongji.team@gmail.com";
+        String password = "$2a$10$q8s1Yw4zGU7ky5S9oBDEYuj.FnOqNUi180YQZVbgIeg1CI3Fj2NzO";
+        String nickname = "둥지닉넴";
+        Part part = Part.BACKEND;
+        Account account = Account.builder()
+                .accountId(1L)
+                .password(password)
+                .email(email)
+                .name(name).nickname(nickname).part(Part.BACKEND).alarmFlag(AlarmFlag.ON).role(Role.USER).build();
+
         given(passwordEncoder.matches(any(), any())).willReturn(true);
-        given(accountRepository.findByEmail(anyString())).willReturn(java.util.Optional.of(account));
+        given(accountRepository.findByEmail(email)).willReturn(java.util.Optional.of(account));
 
         // when
         Account resultAccount = accountService.login(email, password);
