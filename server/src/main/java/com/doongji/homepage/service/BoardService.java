@@ -31,7 +31,10 @@ public class BoardService {
     @Transactional
     public Board register(String title, String description, BoardType boardType) {
         return boardRepository.save(
-                new Board(title, description, boardType, AccessType.PUBLIC)
+                Board.builder()
+                        .title(title).description(description)
+                        .boardType(boardType).accessType(AccessType.PUBLIC)
+                        .build()
         );
     }
 
@@ -39,7 +42,7 @@ public class BoardService {
     public Board update(Long id, String title, String description, BoardType boardType) {
         return boardRepository.findById(id)
                 .map(board ->{
-                    board.updateBoard(board);
+                    board.updateBoard(title, description, boardType);
                     return board;
                 })
                 .orElseThrow(() -> new NotFoundException(Board.class, id));
