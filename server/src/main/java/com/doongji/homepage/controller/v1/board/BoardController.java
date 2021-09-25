@@ -1,5 +1,6 @@
 package com.doongji.homepage.controller.v1.board;
 
+import com.doongji.homepage.controller.v1.board.dto.BoardRequest;
 import com.doongji.homepage.controller.v1.board.dto.BoardResponse;
 import com.doongji.homepage.service.BoardService;
 import io.swagger.annotations.Api;
@@ -7,9 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +36,16 @@ public class BoardController {
     public ResponseEntity<BoardResponse> board(@PathVariable Long boardId) {
         return ResponseEntity.ok(
                 new BoardResponse(boardService.findById(boardId))
+        );
+    }
+
+    @ApiOperation(value = "게시판 등록")
+    @PostMapping("board")
+    public ResponseEntity<BoardResponse> boardRegister(@RequestBody BoardRequest boardRequest) {
+        return ResponseEntity.ok(
+                new BoardResponse(boardService.register(
+                        boardRequest.title, boardRequest.description, boardRequest.boardType)
+                )
         );
     }
 
