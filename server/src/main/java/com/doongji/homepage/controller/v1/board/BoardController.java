@@ -59,4 +59,11 @@ public class BoardController {
         );
     }
 
+    @ApiOperation(value = "게시판 삭제 (해당 포스트도 함께 삭제)")
+    @DeleteMapping("board/{boardId}")
+    public ResponseEntity<Void> boardDelete(@PathVariable Long boardId) {
+        boardService.remove(boardId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
