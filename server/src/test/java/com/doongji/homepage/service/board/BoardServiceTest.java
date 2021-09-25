@@ -18,6 +18,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 
 @Slf4j
@@ -94,6 +95,23 @@ public class BoardServiceTest {
         assertThat(register.getTitle()).isEqualTo(title);
         assertThat(register.getAccessType()).isEqualTo(accessType);
         log.info("register board: {}", register);
+    }
+
+    @Test
+    void 게시판_수정() {
+        // given
+        Board board = Board.builder().boardId(1L)
+                .title("title").description("description").boardType(boardType).accessType(AccessType.PUBLIC).build();
+        given(boardRepository.findById(anyLong())).willReturn(java.util.Optional.of(board));
+
+        // when
+        Board update = boardService.update(1L, title, description, boardType);
+
+        // then
+        assertThat(update.getTitle()).isEqualTo(title);
+        assertThat(update.getDescription()).isEqualTo(description);
+        assertThat(update.getBoardType()).isEqualTo(boardType);
+        log.info("update board: {}", update);
     }
 
 }
