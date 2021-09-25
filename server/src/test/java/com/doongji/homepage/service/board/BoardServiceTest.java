@@ -6,6 +6,7 @@ import com.doongji.homepage.entity.board.BoardType;
 import com.doongji.homepage.repository.BoardRepository;
 import com.doongji.homepage.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +29,19 @@ public class BoardServiceTest {
     @Mock
     private BoardRepository boardRepository;
 
+    private String title;
+    private String description;
+    private BoardType boardType;
+    private AccessType accessType;
+
+    @BeforeEach
+    void setUp() {
+        title = "제목";
+        description = "설명";
+        boardType = BoardType.NOTICE;
+        accessType = AccessType.PUBLIC;
+    }
+
     @Test
     void 게시판_목록_조회() {
         // given
@@ -45,6 +59,23 @@ public class BoardServiceTest {
         assertThat(boards).isNotNull();
         assertThat(boards.size()).isEqualTo(2);
         log.info("board list: {}", boards);
+    }
+
+    @Test
+    void 게시판_상세_조회() {
+        // given
+        Board board = Board.builder().boardId(1L)
+                .title(title).description(description).boardType(boardType).accessType(accessType).build();
+        given(boardRepository.findById(1L)).willReturn(java.util.Optional.of(board));
+
+        // when
+        Board result = boardService.findById(1L);
+
+        // then
+        assertThat(result).isNotNull();
+        assertThat(result.getTitle()).isEqualTo(title);
+        assertThat(result.getBoardType()).isEqualTo(boardType);
+        log.info("board: {}", result);
     }
 
 }
