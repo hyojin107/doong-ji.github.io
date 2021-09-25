@@ -4,6 +4,7 @@ import com.doongji.homepage.entity.board.AccessType;
 import com.doongji.homepage.entity.board.Board;
 import com.doongji.homepage.entity.board.BoardType;
 import com.doongji.homepage.repository.BoardRepository;
+import com.doongji.homepage.repository.PostRepository;
 import com.doongji.homepage.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.times;
 
 @Slf4j
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +33,9 @@ public class BoardServiceTest {
 
     @Mock
     private BoardRepository boardRepository;
+
+    @Mock
+    private PostRepository postRepository;
 
     private String title;
     private String description;
@@ -112,6 +118,21 @@ public class BoardServiceTest {
         assertThat(update.getDescription()).isEqualTo(description);
         assertThat(update.getBoardType()).isEqualTo(boardType);
         log.info("update board: {}", update);
+    }
+
+    @Test
+    void 게시판_삭제() {
+        // given
+        Board board = Board.builder().boardId(1L)
+                .title("title").description("description").boardType(boardType).accessType(AccessType.PUBLIC).build();
+        given(boardRepository.findById(anyLong())).willReturn(java.util.Optional.of(board));
+
+        // when
+        boardService.remove(1L);
+
+        // then
+        then(boardRepository).should(times(1)).delete(any(Board.class));
+        then(postRepository).should(times(1)).deleteByBoard(any(Board.class));
     }
 
 }
