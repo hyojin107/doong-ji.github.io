@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @Slf4j
@@ -76,6 +77,23 @@ public class BoardServiceTest {
         assertThat(result.getTitle()).isEqualTo(title);
         assertThat(result.getBoardType()).isEqualTo(boardType);
         log.info("board: {}", result);
+    }
+
+    @Test
+    void 게시판_등록() {
+        // given
+        Board board = Board.builder().boardId(1L)
+                .title(title).description(description).boardType(boardType).accessType(accessType).build();
+        given(boardRepository.save(any(Board.class))).willReturn(board);
+
+        // when
+        Board register = boardService.register(title, description, boardType);
+
+        // then
+        assertThat(register.getBoardId()).isEqualTo(1L);
+        assertThat(register.getTitle()).isEqualTo(title);
+        assertThat(register.getAccessType()).isEqualTo(accessType);
+        log.info("register board: {}", register);
     }
 
 }
