@@ -45,5 +45,15 @@ public class BoardService {
                 .orElseThrow(() -> new NotFoundException(Board.class, id));
     }
 
+    @Transactional
+    public void remove(Long id) {
+        boardRepository.findById(id)
+                .map(board -> {
+                    postRepository.deleteByBoard(board);
+                    boardRepository.delete(board);
+                    return board;
+                })
+                .orElseThrow(() -> new NotFoundException(Board.class, id));
+    }
 
 }
