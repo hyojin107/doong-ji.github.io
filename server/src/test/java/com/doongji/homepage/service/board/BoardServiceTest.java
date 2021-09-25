@@ -135,4 +135,23 @@ public class BoardServiceTest {
         then(postRepository).should(times(1)).deleteByBoard(any(Board.class));
     }
 
+    @Test
+    void 게시판_접근범위_수정() {
+        // given
+        List<Long> boardIdList = Arrays.asList(1L, 2L);
+        Board board1 = Board.builder().boardId(1L)
+                .title("제목1").description("설명1").boardType(BoardType.NOTICE).accessType(AccessType.PUBLIC).build();
+        Board board2 = Board.builder().boardId(2L)
+                .title("제목2").description("설명2").boardType(BoardType.GENERAL).accessType(AccessType.PRIVATE).build();
+        given(boardRepository.findById(1L)).willReturn(java.util.Optional.of(board1));
+        given(boardRepository.findById(2L)).willReturn(java.util.Optional.of(board2));
+
+        // when
+        boardService.updateAccessType(boardIdList, accessType);
+
+        // then
+        assertThat(board1.getAccessType()).isEqualTo(accessType);
+        assertThat(board2.getAccessType()).isEqualTo(accessType);
+    }
+
 }
