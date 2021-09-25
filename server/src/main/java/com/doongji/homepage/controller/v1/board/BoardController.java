@@ -49,4 +49,14 @@ public class BoardController {
         );
     }
 
+    @ApiOperation(value = "게시판 수정")
+    @PutMapping("board/{boardId}")
+    public ResponseEntity<BoardResponse> boardUpdate(@PathVariable Long boardId, @RequestBody BoardRequest boardRequest) {
+        return ResponseEntity.ok(
+                new BoardResponse(boardService.update(
+                        boardId, boardRequest.getTitle(), boardRequest.getDescription(), boardRequest.getBoardType()
+                ))
+        );
+    }
+
 }
