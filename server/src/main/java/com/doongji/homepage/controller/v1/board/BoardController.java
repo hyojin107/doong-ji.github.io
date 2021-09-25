@@ -1,5 +1,6 @@
 package com.doongji.homepage.controller.v1.board;
 
+import com.doongji.homepage.controller.v1.board.dto.AccessRequest;
 import com.doongji.homepage.controller.v1.board.dto.BoardRequest;
 import com.doongji.homepage.controller.v1.board.dto.BoardResponse;
 import com.doongji.homepage.service.BoardService;
@@ -63,6 +64,13 @@ public class BoardController {
     @DeleteMapping("board/{boardId}")
     public ResponseEntity<Void> boardDelete(@PathVariable Long boardId) {
         boardService.remove(boardId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @ApiOperation(value = "게시판 접근범위 변경")
+    @PutMapping("board/access")
+    public ResponseEntity<Void> accessTypeUpdate(@RequestBody AccessRequest accessRequest) {
+        boardService.updateAccessType(accessRequest.getBoardIdList(), accessRequest.getAccessType());
         return ResponseEntity.noContent().build();
     }
 

@@ -56,4 +56,16 @@ public class BoardService {
                 .orElseThrow(() -> new NotFoundException(Board.class, id));
     }
 
+    @Transactional
+    public void updateAccessType(List<Long> boardIdList, AccessType accessType) {
+        boardIdList.forEach(
+                boardId -> boardRepository.findById(boardId)
+                        .map(board -> {
+                            board.updateAccessType(accessType);
+                            return board;
+                        })
+                        .orElseThrow(() -> new NotFoundException(Board.class, boardId))
+        );
+    }
+
 }

@@ -53,4 +53,8 @@ public class Board extends BaseTimeEntity {
         this.accessType = board.getAccessType();
     }
 
+    public void updateAccessType(AccessType accessType) {
+        this.accessType = accessType;
+    }
+
 }
