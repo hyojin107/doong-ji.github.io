@@ -27,8 +27,8 @@ public class BoardResponse {
     @ApiModelProperty(value = "게시판 유형", required = true)
     public BoardType boardType;
 
-    @ApiModelProperty(value = "공개 여부", required = true)
-    public AccessType accessScope;
+    @ApiModelProperty(value = "게시판 접근 범위", required = true)
+    public AccessType accessType;
 
     public BoardResponse(Board source) {
         copyProperties(source, this);
