@@ -35,6 +35,9 @@ public class Post extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private PinFlag pinFlag;
 
+    @Enumerated(EnumType.STRING)
+    private PostType postType;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "board_id")
     private Board board;
@@ -48,6 +51,7 @@ public class Post extends BaseTimeEntity {
         checkArgument(isNotEmpty(title), "title must be provided.");
         checkArgument(isNotEmpty(content), "content must be provided.");
         checkNotNull(pinFlag, "pinFlag must be provided.");
+        checkNotNull(postType, "postType must be provided.");
         checkNotNull(account.getAccountId(), "accountId must be provided.");
         checkNotNull(board.getBoardId(), "boardId must be provided.");
 
@@ -59,8 +63,19 @@ public class Post extends BaseTimeEntity {
         this.commentCount = commentCount;
         this.reportCount = reportCount;
         this.pinFlag = pinFlag;
+        this.postType = postType;
         this.board = board;
         this.account = account;
+    }
+
+    public void updatePost(String title, String content, PinFlag pinFlag) {
+        this.title = title;
+        this.content = content;
+        this.pinFlag = pinFlag;
+    }
+
+    public int incrementViewCount() {
+        return ++this.viewCount;
     }
 
 }
